@@ -19,6 +19,7 @@ public class ConnectionFactory {
     public static final String PASS = "admin";
 
     public static Connection getConnection() {
+        //try catch bloco de tratamento
         try {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
