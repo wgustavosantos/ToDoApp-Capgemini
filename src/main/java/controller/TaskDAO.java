@@ -43,20 +43,11 @@ public class TaskDAO {
             stmt.setDate(8, new Date(task.getUpdatedAt().getTime()));
             //Executa a sql para inserir os dados
             stmt.execute();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             throw new RuntimeException("Erro ao salvar a tarefa " + ex.getMessage(), ex);
         } finally {
-            //Fecha as conex�es
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                throw new RuntimeException("Erro ao fechar a conexão", ex);
-            }
+            //Fecha as conexoes
+            ConnectionFactory.closeConnection(conn, stmt);
         }
 
     }
@@ -78,10 +69,10 @@ public class TaskDAO {
             stmt.setInt(1, id);
             stmt.execute();
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             throw new RuntimeException("Erro ao deletar a tarefa", ex);
         } finally {
-            ConnectionFactory.closeConnection(conn);
+            ConnectionFactory.closeConnection(conn, stmt);
         }
     }
 
