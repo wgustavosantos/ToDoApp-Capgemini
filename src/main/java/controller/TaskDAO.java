@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Task;
@@ -139,7 +138,7 @@ public class TaskDAO {
                 tasks.add(task);
             }
         } catch (Exception ex) {
-            throw new RuntimeException("Erro ao deletar a tarefa", ex);
+            throw new RuntimeException("Erro ao inserir a tarefa", ex);
         } finally {
             ConnectionFactory.closeConnection(conn, stmt, rset);
         }
