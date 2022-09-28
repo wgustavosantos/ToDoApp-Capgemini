@@ -138,8 +138,11 @@ public class TaskDAO {
                 tasks.add(task);
             }
         } catch (Exception ex) {
-
+            throw new RuntimeException("Erro ao deletar a tarefa", ex);
+        } finally {
+            ConnectionFactory.closeConnection(conn, stmt, rset);
         }
+        //Lista de tarefas que foi carregada do banco de dados
         return tasks;
     }
 }
