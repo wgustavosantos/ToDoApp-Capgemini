@@ -36,6 +36,9 @@ public class Task {
 
     public Task() {
         this.createdAt = new Date();
+        this.updatedAt = new Date();
+        this.deadline = new Date();
+        this.completed = false;
     }
 
     public int getId() {

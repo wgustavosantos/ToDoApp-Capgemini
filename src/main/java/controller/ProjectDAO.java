@@ -66,7 +66,7 @@ public class ProjectDAO {
             stmt.setString(2, project.getDescription());
             stmt.setDate(3, new java.sql.Date(project.getCreatedAt().getTime()));
             stmt.setDate(4, new java.sql.Date(project.getUpdatedAt().getTime()));
-            stmt.setInt(4, project.getId());
+            stmt.setInt(5, project.getId());
 
             //Executa a sql para insercao dos dados
             stmt.execute();
@@ -100,7 +100,7 @@ public class ProjectDAO {
                 project.setName(rset.getString("name"));
                 project.setDescription(rset.getString("description"));
                 project.setCreatedAt(rset.getDate("createdAt"));
-                project.setCreatedAt(rset.getDate("updatedAt"));
+                project.setUpdatedAt(rset.getDate("updatedAt"));
 
                 //Adiciono o contato recuperado, a lista de contatos
                 projects.add(project);

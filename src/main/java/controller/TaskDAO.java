@@ -21,7 +21,7 @@ public class TaskDAO {
 
     public void save(Task task) {
 
-        String sql = "INSERT INTO tasks(idProject, name, description, completed "
+        String sql = "INSERT INTO task(idProject, name, description, completed "
                 + ", notes, deadline, createdAt, updatedAt) VALUES "
                 + "(?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -55,7 +55,7 @@ public class TaskDAO {
 
     public void update(Task task) {
 
-        String sql = "UPDATE tasks SET idProject = ?, name = ?, description = ?, "
+        String sql = "UPDATE task SET idProject = ?, name = ?, description = ?, "
                 + "completed = ?, notes = ?, deadline = ?,"
                 + " createdAt = ?, updatedAt = ? WHERE id = ?";
 
@@ -86,7 +86,7 @@ public class TaskDAO {
 
     public void removeById(int id) {
 
-        String sql = "DELETE FROM tasks WHERE id = ?";
+        String sql = "DELETE FROM task WHERE id = ?";
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -106,7 +106,7 @@ public class TaskDAO {
     }
 
     public List<Task> getAll(int idProject) {
-        String sql = "SELECT * FROM tasks WHERE idProject = ?";
+        String sql = "SELECT * FROM task WHERE idProject = ?";
 
         Connection conn = null;
         PreparedStatement stmt = null;
