@@ -7,7 +7,9 @@ package controller;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import model.Task;
 import util.ConnectionFactory;
@@ -53,6 +55,33 @@ public class TaskDAO {
     }
 
     public void update(Task task) {
+
+        String sql = "UPDATE tasks SET idProject = ?, name = ?, description = ?, "
+                + "completed = ?, notes = ?, deadline = ?,"
+                + " createdAt = ?, updatedAt = ? WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            //Cria uma conexao com o banco
+            conn = ConnectionFactory.getConnection();
+            //Cria um PreparedStatment, classe usada para executar a query
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, task.getIdProject());
+            stmt.setString(2, task.getName());
+            stmt.setString(3, task.getDescription());
+            stmt.setBoolean(4, task.isCompleted());
+            stmt.setString(5, task.getNotes());
+            stmt.setDate(6, new java.sql.Date(task.getDeadline().getTime()));
+            stmt.setDate(7, new java.sql.Date(task.getCreatedAt().getTime()));
+            stmt.setDate(9, new java.sql.Date(task.getUpdatedAt().getTime()));
+            stmt.execute();
+
+        } catch (Exception ex) {
+            throw new RuntimeException("Erro em atualizar a tarefa", ex);
+        }
     }
 
     public void removeById(int id) {
@@ -76,7 +105,41 @@ public class TaskDAO {
         }
     }
 
-    public List<Task> getAll() {
-        return null;
+    public List<Task> getAll(int idProject) {
+        String sql = "SELECT * FROM tasks WHERE idProject = ?";
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rset = null; //Classe que vai recuperar os dados do banco de dados
+
+        List<Task> tasks = new ArrayList<>();
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idProject);
+            rset = stmt.executeQuery();
+            //Enquanto existir dados no banco de dados, faça
+            while (rset.next()) {
+
+                Task task = new Task();
+
+                task.setId(rset.getInt("id"));
+                task.setIdProject(rset.getInt("idProject"));
+                task.setName(rset.getString("name"));
+                task.setDescription(rset.getString("description"));
+                task.setIsCompleted(rset.getBoolean("completed"));
+                task.setNotes(rset.getString("notes"));
+                task.setDeadline(rset.getDate("deadline"));
+                task.setCreatedAt(rset.getDate("createdAt"));
+                task.setCreatedAt(rset.getDate("updatedAt"));
+
+                //Adiciono o contato recuperado, a lista de contatos
+                tasks.add(task);
+            }
+        } catch (Exception ex) {
+
+        }
+        return tasks;
     }
 }
