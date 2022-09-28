@@ -76,7 +76,8 @@ public class TaskDAO {
             stmt.setString(5, task.getNotes());
             stmt.setDate(6, new java.sql.Date(task.getDeadline().getTime()));
             stmt.setDate(7, new java.sql.Date(task.getCreatedAt().getTime()));
-            stmt.setDate(9, new java.sql.Date(task.getUpdatedAt().getTime()));
+            stmt.setDate(8, new java.sql.Date(task.getUpdatedAt().getTime()));
+            stmt.setInt(9, task.getId());
             stmt.execute();
 
         } catch (Exception ex) {
