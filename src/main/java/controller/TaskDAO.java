@@ -39,8 +39,9 @@ public class TaskDAO {
             stmt.setBoolean(4, task.isCompleted());
             stmt.setString(5, task.getNotes());
             stmt.setDate(6, new Date(task.getDeadline().getTime()));
-
-            //Executa a sql para inser��o dos dados
+            stmt.setDate(7, new Date(task.getCreatedAt().getTime()));
+            stmt.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            //Executa a sql para inserir os dados
             stmt.execute();
         } catch (SQLException ex) {
             throw new RuntimeException("Erro ao salvar a tarefa " + ex.getMessage(), ex);
