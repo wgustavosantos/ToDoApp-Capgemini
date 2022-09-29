@@ -38,8 +38,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanelTasks" max="32767" attributes="0"/>
                   <Component id="jPanel5" max="32767" attributes="0"/>
+                  <Component id="jPanelTasks" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -197,9 +197,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabelTasksTitle" min="-2" pref="511" max="-2" attributes="0"/>
+                  <Component id="jLabelTasksTitle" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabelTasksAdd" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTasksAdd" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -350,7 +350,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelEmptyLstIcon" max="32767" attributes="0"/>
                           <Component id="jLabelEmptyListTitle" max="32767" attributes="0"/>
-                          <Component id="jLabelEmptyListSubTitle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabelEmptyListSubTitle" alignment="0" pref="614" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -365,7 +365,7 @@
                       <Component id="jLabelEmptyListTitle" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabelEmptyListSubTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
