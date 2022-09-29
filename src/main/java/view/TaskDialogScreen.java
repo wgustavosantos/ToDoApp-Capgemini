@@ -117,7 +117,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         jLabeDeadline.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         jLabeDeadline.setText("Prazo");
 
-        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jFormattedTextFieldDeadline.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 
         jLabelNotes.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
         jLabelNotes.setText("Notas");
@@ -192,7 +192,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
         try {
             Task task = new Task();
-            task.setIdProject(project.getId());
+            task.setIdProject(4);
             task.setName(jTextFieldName.getText());
             task.setDescription(jTextAreaDescription.getText());
             task.setNotes(jTextAreaNotes.getText());
