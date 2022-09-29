@@ -50,11 +50,12 @@ public class MainScreen extends javax.swing.JFrame {
 
         jPanelToolBar.setBackground(new java.awt.Color(0, 153, 102));
 
-        jLabelToolBarTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabelToolBarTitle.setFont(new java.awt.Font("Montserrat", 1, 36)); // NOI18N
         jLabelToolBarTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabelToolBarTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tick.png"))); // NOI18N
         jLabelToolBarTitle.setText(" ToDo App");
 
+        jLabelToolBarSubTitle.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabelToolBarSubTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabelToolBarSubTitle.setText("Anote tudo, não esqueça nada!");
 
@@ -82,10 +83,11 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelProjects.setBackground(java.awt.Color.white);
         jPanelProjects.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabelProjectsTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelProjectsTitle.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabelProjectsTitle.setForeground(new java.awt.Color(0, 153, 102));
         jLabelProjectsTitle.setText("Projetos");
 
+        jLabelProjectsAdd.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jLabelProjectsAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectsAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
 
@@ -113,10 +115,11 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelTasks.setBackground(java.awt.Color.white);
         jPanelTasks.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabelTasksTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTasksTitle.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabelTasksTitle.setForeground(new java.awt.Color(0, 153, 102));
         jLabelTasksTitle.setText("Tarefas");
 
+        jLabelTasksAdd.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jLabelTasksAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTasksAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
 
@@ -144,7 +147,7 @@ public class MainScreen extends javax.swing.JFrame {
         jPanelProjectsList.setBackground(java.awt.Color.white);
         jPanelProjectsList.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jListProjects.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jListProjects.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jListProjects.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -175,16 +178,17 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel5.setBackground(java.awt.Color.white);
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabelEmptyLstIcon.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jLabelEmptyLstIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEmptyLstIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lists.png"))); // NOI18N
 
-        jLabelEmptyListTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelEmptyListTitle.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         jLabelEmptyListTitle.setForeground(new java.awt.Color(0, 153, 102));
         jLabelEmptyListTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEmptyListTitle.setText("Nenhuma tarefa por aqui :D");
 
         jLabelEmptyListSubTitle.setBackground(new java.awt.Color(0, 153, 102));
-        jLabelEmptyListSubTitle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelEmptyListSubTitle.setFont(new java.awt.Font("Montserrat", 1, 12)); // NOI18N
         jLabelEmptyListSubTitle.setForeground(new java.awt.Color(153, 153, 153));
         jLabelEmptyListSubTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelEmptyListSubTitle.setText("Clique no botão \"+\" para adicionar uma nova tarefa");
@@ -210,7 +214,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(jLabelEmptyListTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelEmptyListSubTitle)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
