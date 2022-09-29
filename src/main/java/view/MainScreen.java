@@ -135,6 +135,11 @@ public class MainScreen extends javax.swing.JFrame {
         jLabelProjectsAdd.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         jLabelProjectsAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelProjectsAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        jLabelProjectsAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelProjectsAddMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelProjectsLayout = new javax.swing.GroupLayout(jPanelProjects);
         jPanelProjects.setLayout(jPanelProjectsLayout);
@@ -299,6 +304,13 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabelProjectsAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelProjectsAddMouseClicked
+        // TODO add your handling code here:
+        ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, true);
+        projectDialogScreen.setVisible(true);
+
+    }//GEN-LAST:event_jLabelProjectsAddMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -355,16 +367,15 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneProjects;
     private javax.swing.JTable jTableTasks;
     // End of variables declaration//GEN-END:variables
-    
-    
+
     public void decorateJTableTasks() {
-        
+
         //Customizando o header da table de tarefas
         jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         jTableTasks.getTableHeader().setBackground(new Color(0, 153, 102));
         jTableTasks.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         //Criando um sort automático para as colunas da Table
-         jTableTasks.setAutoCreateRowSorter(true);
+        jTableTasks.setAutoCreateRowSorter(true);
     }
 }
