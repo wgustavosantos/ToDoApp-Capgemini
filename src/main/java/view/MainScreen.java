@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import util.TaskTableModel;
 
 /**
  *
@@ -24,6 +25,8 @@ public class MainScreen extends javax.swing.JFrame {
     TaskDAO taskDAO;
     
     DefaultListModel  projectModel;
+    
+    TaskTableModel taskTableModel;
     
     public MainScreen() {
         initComponents();
@@ -414,6 +417,9 @@ public class MainScreen extends javax.swing.JFrame {
     public void initComponentesModel(){
         projectModel = new DefaultListModel<>();
         loadProjects();
+        
+        taskTableModel = new TaskTableModel();
+        jTableTasks.setModel(taskTableModel);
     }
     
     public void loadProjects(){

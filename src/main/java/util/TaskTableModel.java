@@ -48,9 +48,9 @@ public class TaskTableModel extends AbstractTableModel {
                 return "";
 
             default:
+                return "Dados não encontrados";
 
         }
-         return null;
     }
 
 }
