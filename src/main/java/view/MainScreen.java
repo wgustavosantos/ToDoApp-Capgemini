@@ -402,7 +402,7 @@ public class MainScreen extends javax.swing.JFrame {
     public void decorateJTableTasks() {
 
         //Customizando o header da table de tarefas
-        jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+        jTableTasks.getTableHeader().setFont(new Font("Montserrat", Font.BOLD, 14));
         jTableTasks.getTableHeader().setBackground(new Color(0, 153, 102));
         jTableTasks.getTableHeader().setForeground(new Color(255, 255, 255));
 
@@ -415,12 +415,13 @@ public class MainScreen extends javax.swing.JFrame {
         taskDAO = new TaskDAO();
     }
     
-    public void initComponentesModel(){
+    public void initComponentesModel(){  
         projectModel = new DefaultListModel<>();
         loadProjects();
         
         taskTableModel = new TaskTableModel();
-        loadTasks();
+        jTableTasks.setModel(taskTableModel);
+        loadTasks(3);
     }
     
     public void loadProjects(){
@@ -435,11 +436,11 @@ public class MainScreen extends javax.swing.JFrame {
         jListProjects.setModel(projectModel);
     }
     
-      private void loadTasks() {
-        List<Task> tasks = taskDAO.getAll(14); 
+      private void loadTasks(int idProject) {
+        List<Task> tasks = taskDAO.getAll(idProject); 
 
         taskTableModel.setTasks(tasks);
-        
+          System.out.println("456" + tasks);
     }
 
 }
