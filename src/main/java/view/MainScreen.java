@@ -21,7 +21,7 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectDAO projectDAO;
     TaskDAO taskDAO;
     
-    DefaultListModel<Project> projectModel;
+    DefaultListModel  projectModel;
     
     public MainScreen() {
         initComponents();
@@ -402,7 +402,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponentesModel(){
-        projectModel = new DefaultListModel<Project>();
+        projectModel = new DefaultListModel<>();
         loadProjects();
     }
     
@@ -410,7 +410,7 @@ public class MainScreen extends javax.swing.JFrame {
         List<Project> projects = projectDAO.getAll();
         projectModel.clear();
         
-        for (int i = 0; i < projects.size() -1; i++) {
+        for (int i = 0; i < projects.size(); i++) {
             
             Project project = projects.get(i);
             projectModel.addElement(project);
