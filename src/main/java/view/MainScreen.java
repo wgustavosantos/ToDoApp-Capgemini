@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import model.Task;
 import util.TaskTableModel;
 
 /**
@@ -419,7 +420,7 @@ public class MainScreen extends javax.swing.JFrame {
         loadProjects();
         
         taskTableModel = new TaskTableModel();
-        jTableTasks.setModel(taskTableModel);
+        loadTasks();
     }
     
     public void loadProjects(){
@@ -433,4 +434,12 @@ public class MainScreen extends javax.swing.JFrame {
         }
         jListProjects.setModel(projectModel);
     }
+    
+      private void loadTasks() {
+        List<Task> tasks = taskDAO.getAll(14); 
+
+        taskTableModel.setTasks(tasks);
+        
+    }
+
 }
