@@ -4,21 +4,29 @@
  */
 package view;
 
+import controller.ProjectDAO;
+import controller.TaskDAO;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.DefaultListModel;
+import model.Project;
 
 /**
  *
  * @author WENDERSON
  */
 public class MainScreen extends javax.swing.JFrame {
-
-    /**
-     * Creates new form MainScreen
-     */
+    
+    ProjectDAO projectDAO;
+    TaskDAO taskDAO;
+    
+    DefaultListModel<Project> projectModel;
+    
     public MainScreen() {
         initComponents();
         decorateJTableTasks();
+        
+        initDataController();
     }
 
     /**
@@ -389,5 +397,14 @@ public class MainScreen extends javax.swing.JFrame {
 
         //Criando um sort automático para as colunas da Table
         jTableTasks.setAutoCreateRowSorter(true);
+    }
+    
+    public void initDataController(){
+        projectDAO = new ProjectDAO();
+        taskDAO = new TaskDAO();
+    }
+    
+    public void loadProjects(){
+        
     }
 }
