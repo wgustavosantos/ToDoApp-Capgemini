@@ -38,6 +38,15 @@ public class TaskTableModel extends AbstractTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 3;
     }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if(tasks.isEmpty()){
+            return Object.class;
+        }
+        
+        return this.getValueAt(0, columnIndex).getClass();
+    }
     
     
 
