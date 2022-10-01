@@ -4,6 +4,7 @@
  */
 package util;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -37,11 +38,13 @@ public class TaskTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                
         return switch (columnIndex) {
             case 0 -> tasks.get(rowIndex).getName();
             case 1 -> tasks.get(rowIndex).getDescription();
-            case 2 -> tasks.get(rowIndex).getDeadline();
+            case 2 -> sdf.format(tasks.get(rowIndex).getDeadline());
             case 3 -> tasks.get(rowIndex).isCompleted();
             case 4 -> "";
             case 5 -> "";
