@@ -387,11 +387,11 @@ public class MainScreen extends javax.swing.JFrame {
 
             jPanelContainer.add(jScrollPaneTasks);
             jScrollPaneTasks.setVisible(true);
-            jScrollPaneTasks.setSize(jScrollPaneTasks.getWidth(), jScrollPaneTasks.getHeight());
+            jScrollPaneTasks.setSize(jPanelContainer.getWidth(), jPanelContainer.getHeight());
         } else {
             if (jScrollPaneTasks.isVisible()) {
                 jScrollPaneTasks.setVisible(false);
-                jPanelEmptyList.remove(jScrollPaneTasks);
+                jPanelContainer.remove(jScrollPaneTasks);
             }
  
             jPanelContainer.add(jPanelEmptyList);
@@ -478,7 +478,14 @@ public class MainScreen extends javax.swing.JFrame {
 
         taskTableModel = new TaskTableModel();
         jTableTasks.setModel(taskTableModel);
-        loadTasks(3);
+        
+        
+        if (!projectModel.isEmpty()) {
+            jListProjects.setSelectedIndex(0);
+            //int projectIndex = jListProjects.getSelectedIndex();
+            Project project = (Project) projectModel.get(0);
+            loadTasks(project.getId());
+        }
     }
 
     public void loadProjects() {
