@@ -362,15 +362,22 @@ public class MainScreen extends javax.swing.JFrame {
         
         int rowIndex = jTableTasks.rowAtPoint(evt.getPoint());
         int columnIndex = jTableTasks.columnAtPoint(evt.getPoint());
+        Task task = taskTableModel.getTasks().get(rowIndex);
         
         switch (columnIndex) {
             case 3:
-                Task task = taskTableModel.getTasks().get(rowIndex);
                 taskDAO.update(task);
                 break;
             case 4:
                 break;
             case 5:
+                taskDAO.removeById(task.getId());
+                taskTableModel.getTasks().remove(task);
+                
+                int projectIndex = jListProjects.getSelectedIndex();
+                Project project = (Project) projectModel.get(projectIndex);
+                loadTasks(project.getId());
+                
                 break;
         }
     }//GEN-LAST:event_jTableTasksMouseClicked
