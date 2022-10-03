@@ -23,8 +23,17 @@ public class DeadlineColumnCellRenderer extends DefaultTableCellRenderer {
         //Cells are by default rendered as a JLabel.
         JLabel label = (JLabel) super.getTableCellRendererComponent(table, value,
                 isSelected, hasFocus, row, col);
-        label.setHorizontalAlignment( JLabel.CENTER );
+        label.setHorizontalAlignment(JLabel.CENTER);
 
-      
-        return null;
+        TaskTableModel taskModel = (TaskTableModel) table.getModel();
+        Task task = taskModel.getTasks().get(row);
+
+        if (task.getDeadline().after(new Date())) {
+            label.setBackground(Color.GREEN);
+        } else {
+            label.setBackground(Color.red);
+        }
+
+        return label;
     }
+}
