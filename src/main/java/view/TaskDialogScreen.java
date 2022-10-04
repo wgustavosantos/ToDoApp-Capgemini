@@ -233,7 +233,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
                 this.dispose();
             } else {
-                
+                hideErrorFields();
                 if(jTextFieldName.getText().isEmpty()){
                     jLabelNameError.setVisible(true);
                 }
