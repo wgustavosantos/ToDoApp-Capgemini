@@ -191,25 +191,33 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
 
         try {
-            Task task = new Task();
-            task.setIdProject(project.getId());
-            task.setName(jTextFieldName.getText());
-            task.setDescription(jTextAreaDescription.getText());
-            task.setNotes(jTextAreaNotes.getText());
-            task.setIsCompleted(false);
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date deadline = null;
+            if (jTextFieldName.getText().isEmpty()
+                    || jFormattedTextFieldDeadline.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "A tarefa não foi salva pois"
+                        + " existem campos obrigatórios a serem preenchidos!");
+            } else {
+                Task task = new Task();
+                task.setIdProject(project.getId());
+                task.setName(jTextFieldName.getText());
+                task.setDescription(jTextAreaDescription.getText());
+                task.setNotes(jTextAreaNotes.getText());
+                task.setIsCompleted(false);
 
-            deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
-            taskDAO.save(task);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date deadline = null;
 
-            JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
+                deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
+                taskDAO.save(task);
+
+                JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
+                this.dispose();
+            }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-           this.dispose(); 
+
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**
@@ -272,8 +280,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void setProject(Project project) {
-        this.project  = project;
+        this.project = project;
     }
-    
-       
+
 }
