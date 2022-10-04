@@ -482,7 +482,10 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getColumnModel().getColumn(2)
                 .setCellRenderer(new DeadlineColumnCellRenderer());
         
-       
+        jTableTasks.getColumnModel().getColumn(4).setCellRenderer(new ButtonColumnCellRederer("edit"));
+        
+        jTableTasks.getColumnModel().getColumn(5).setCellRenderer(new ButtonColumnCellRederer("delete"));
+        
         //Criando um sort automático para as colunas da Table
         jTableTasks.setAutoCreateRowSorter(true);
     }

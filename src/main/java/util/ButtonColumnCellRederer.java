@@ -21,7 +21,9 @@ public class ButtonColumnCellRederer extends DefaultTableCellRenderer {
 
     private String buttonType;
 
-   
+    public ButtonColumnCellRederer(String buttonType) {
+        this.buttonType = buttonType;
+    }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
