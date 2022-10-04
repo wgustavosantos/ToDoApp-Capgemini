@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
 import model.Task;
+import util.ButtonColumnCellRederer;
 import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
 
@@ -481,6 +482,7 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getColumnModel().getColumn(2)
                 .setCellRenderer(new DeadlineColumnCellRenderer());
         
+       
         //Criando um sort automático para as colunas da Table
         jTableTasks.setAutoCreateRowSorter(true);
     }
