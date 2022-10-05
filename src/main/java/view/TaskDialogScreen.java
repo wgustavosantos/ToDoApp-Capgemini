@@ -20,12 +20,25 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
     TaskDAO taskDAO;
     Project project;
+    boolean taskUpdate = false;
+    int idTaskUpdate = 0;
 
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         hideErrorFields();
         taskDAO = new TaskDAO();
+        taskUpdate = false; // Garantir que a variavel sentinela para atualizar
+        //tarefas seja sempre falsa ao ser instanciada com o construtor padrao
+    }
+
+    public TaskDialogScreen(java.awt.Frame parent, boolean modal, boolean taskUpdate) {
+        super(parent, modal);
+        initComponents();
+        hideErrorFields();
+        taskDAO = new TaskDAO();
+        this.taskUpdate = taskUpdate;// Tal construtor é chamado quando clicamos
+        //no botao de editar no MainScreen
     }
 
     /**
@@ -215,8 +228,8 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private void jLabelToolBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelToolBarSaveMouseClicked
 
         try {
-            
-            if(isFieldsValid()){
+
+            if (isFieldsValid()) {
                 Task task = new Task();
                 task.setIdProject(project.getId());
                 task.setName(jTextFieldName.getText());
@@ -225,20 +238,27 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 task.setIsCompleted(false);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Date deadline = null;
+                task.setDeadline(dateFormat.parse(jFormattedTextFieldDeadline.getText()));
 
-                deadline = dateFormat.parse(jFormattedTextFieldDeadline.getText());
-                taskDAO.save(task);
+                if (taskUpdate) {
+
+                    task.setId(idTaskUpdate);
+                    task.setIsCompleted((taskDAO.findOne(task.getId()).isCompleted()));
+                    taskDAO.update(task);
+                } else {
+
+                    taskDAO.save(task);
+                }
 
                 JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
                 this.dispose();
             } else {
                 hideErrorFields();
-                if(jTextFieldName.getText().isEmpty()){
+                if (jTextFieldName.getText().isEmpty()) {
                     jLabelNameError.setVisible(true);
                 }
-                
-                if(jFormattedTextFieldDeadline.getText().isEmpty()){
+
+                if (jFormattedTextFieldDeadline.getText().isEmpty()) {
                     jLabelDeadlineError.setVisible(true);
                 }
             }
@@ -248,7 +268,6 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 //                JOptionPane.showMessageDialog(rootPane, "A tarefa não foi salva pois"
 //                        + " existem campos obrigatórios a serem preenchidos!");
 //            } 
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
@@ -320,14 +339,27 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     public void setProject(Project project) {
         this.project = project;
     }
-    
-    public void hideErrorFields(){
+
+    public void hideErrorFields() {
         jLabelNameError.setVisible(false);
         jLabelDeadlineError.setVisible(false);
     }
-    
-    public boolean isFieldsValid(){
+
+    public boolean isFieldsValid() {
         return (!jTextFieldName.getText().isEmpty()) && (!jFormattedTextFieldDeadline.getText().isEmpty());
+    }
+
+    public void loadFields(Task task) {
+
+        jTextFieldName.setText(task.getName());
+        jTextAreaDescription.setText(task.getDescription());
+        jTextAreaNotes.setText(task.getNotes());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        jFormattedTextFieldDeadline.setText(dateFormat.format(task.getDeadline()));
+        idTaskUpdate = task.getId();
+
     }
 
 }

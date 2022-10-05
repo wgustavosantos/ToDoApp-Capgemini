@@ -145,4 +145,40 @@ public class TaskDAO {
         //Lista de tarefas que foi carregada do banco de dados
         return tasks;
     }
+
+    public Task findOne(int idTask) {
+
+        String sql = "SELECT * FROM task WHERE id = ?";
+        Task task = new Task();
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rset = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, idTask);
+            rset = stmt.executeQuery();
+
+            while (rset.next()) {
+                task.setId(rset.getInt("id"));
+                task.setIdProject(rset.getInt("idProject"));
+                task.setName(rset.getString("name"));
+                task.setDescription(rset.getString("description"));
+                task.setIsCompleted(rset.getBoolean("completed"));
+                task.setNotes(rset.getString("notes"));
+                task.setDeadline(rset.getDate("deadline"));
+                task.setCreatedAt(rset.getDate("createdAt"));
+                task.setCreatedAt(rset.getDate("updatedAt"));
+            }
+
+        } catch (Exception e) {
+             throw new RuntimeException("Erro ao buscar tarefa", e);
+        } finally {
+            ConnectionFactory.closeConnection(conn, stmt);
+        }
+
+        return task;
+    }
 }

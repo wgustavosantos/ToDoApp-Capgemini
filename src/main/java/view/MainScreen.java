@@ -23,18 +23,17 @@ import util.TaskTableModel;
  * @author WENDERSON
  */
 public class MainScreen extends javax.swing.JFrame {
-    
+
     ProjectDAO projectDAO;
     TaskDAO taskDAO;
-    
+
     DefaultListModel projectModel;
-    
+
     TaskTableModel taskTableModel;
-    
+
     public MainScreen() {
         initComponents();
-        
-        
+
         initDataController();
         initComponentesModel();
         decorateJTableTasks();
@@ -244,7 +243,7 @@ public class MainScreen extends javax.swing.JFrame {
             jPanelProjectsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProjectsListLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPaneProjects)
+                .addComponent(jScrollPaneProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -276,19 +275,19 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEmptyLstIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelEmptyListTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelEmptyListSubTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                    .addComponent(jLabelEmptyListSubTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelEmptyListLayout.setVerticalGroup(
             jPanelEmptyListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmptyListLayout.createSequentialGroup()
-                .addGap(215, 215, 215)
+                .addGap(203, 203, 203)
                 .addComponent(jLabelEmptyLstIcon)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelEmptyListTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelEmptyListSubTitle)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelContainer.add(jPanelEmptyList, java.awt.BorderLayout.CENTER);
@@ -318,7 +317,7 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jPanelProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
                     .addComponent(jPanelProjectsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -330,76 +329,76 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, true);
         projectDialogScreen.setVisible(true);
-        
+
         projectDialogScreen.addWindowListener(new WindowAdapter() {
-            
+
             public void windowClosed(WindowEvent e) {
                 loadProjects();
             }
-            
+
         });
 
     }//GEN-LAST:event_jLabelProjectsAddMouseClicked
 
     private void jLabelTasksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTasksAddMouseClicked
-        
+
         TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled);
-        
+
         int projectIndex = jListProjects.getSelectedIndex();
         Project project = (Project) projectModel.get(projectIndex);
         taskDialogScreen.setProject(project);
-        
+
         taskDialogScreen.setVisible(true);
-        
-        
-            taskDialogScreen.addWindowListener(new WindowAdapter() {
-                public void windowClosed(WindowEvent e) {
-                    int projectIndex = jListProjects.getSelectedIndex();
-                    Project project = (Project) projectModel.get(projectIndex);
-                    loadTasks(project.getId());
-                }
-            });
+
+        taskDialogScreen.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                int projectIndex = jListProjects.getSelectedIndex();
+                Project project = (Project) projectModel.get(projectIndex);
+                loadTasks(project.getId());
+            }
+        });
     }//GEN-LAST:event_jLabelTasksAddMouseClicked
 
     private void jTableTasksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableTasksMouseClicked
-        
+
         int rowIndex = jTableTasks.rowAtPoint(evt.getPoint());
         int columnIndex = jTableTasks.columnAtPoint(evt.getPoint());
         Task task = taskTableModel.getTasks().get(rowIndex);
-        
+
         switch (columnIndex) {
             case 3:
                 taskDAO.update(task);
                 break;
             case 4:
+                alterarTarefa(task);
                 break;
             case 5:
                 taskDAO.removeById(task.getId());
                 taskTableModel.getTasks().remove(task);
-                
+
                 int projectIndex = jListProjects.getSelectedIndex();
                 Project project = (Project) projectModel.get(projectIndex);
                 loadTasks(project.getId());
-                
+
                 break;
         }
     }//GEN-LAST:event_jTableTasksMouseClicked
 
     private void jListProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListProjectsMouseClicked
-        
+
         int projectIndex = jListProjects.getSelectedIndex();
         Project project = (Project) projectModel.get(projectIndex);
         loadTasks(project.getId());
-        
+
     }//GEN-LAST:event_jListProjectsMouseClicked
-    
+
     private void showJTableTasks(boolean isEmptyTable) {
         if (isEmptyTable) {
             if (jPanelEmptyList.isVisible()) {
                 jPanelEmptyList.setVisible(false);
                 jPanelContainer.remove(jPanelEmptyList);
             }
-            
+
             jPanelContainer.add(jScrollPaneTasks);
             jScrollPaneTasks.setVisible(true);
             jScrollPaneTasks.setSize(jPanelContainer.getWidth(), jPanelContainer.getHeight());
@@ -408,7 +407,7 @@ public class MainScreen extends javax.swing.JFrame {
                 jScrollPaneTasks.setVisible(false);
                 jPanelContainer.remove(jScrollPaneTasks);
             }
-            
+
             jPanelContainer.add(jPanelEmptyList);
             jPanelEmptyList.setVisible(true);
             jPanelEmptyList.setSize(jPanelContainer.getWidth(), jPanelContainer.getHeight());
@@ -478,30 +477,30 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getTableHeader().setFont(new Font("Montserrat", Font.BOLD, 14));
         jTableTasks.getTableHeader().setBackground(new Color(0, 153, 102));
         jTableTasks.getTableHeader().setForeground(new Color(255, 255, 255));
-        
+
         jTableTasks.getColumnModel().getColumn(2)
                 .setCellRenderer(new DeadlineColumnCellRenderer());
-        
+
         jTableTasks.getColumnModel().getColumn(4).setCellRenderer(new ButtonColumnCellRederer("edit"));
-        
+
         jTableTasks.getColumnModel().getColumn(5).setCellRenderer(new ButtonColumnCellRederer("delete"));
-        
+
         //Criando um sort automático para as colunas da Table
         jTableTasks.setAutoCreateRowSorter(true);
     }
-    
+
     public void initDataController() {
         projectDAO = new ProjectDAO();
         taskDAO = new TaskDAO();
     }
-    
+
     public void initComponentesModel() {
         projectModel = new DefaultListModel<>();
         loadProjects();
-        
+
         taskTableModel = new TaskTableModel();
         jTableTasks.setModel(taskTableModel);
-        
+
         if (!projectModel.isEmpty()) {
             jListProjects.setSelectedIndex(0);
             //int projectIndex = jListProjects.getSelectedIndex();
@@ -509,24 +508,46 @@ public class MainScreen extends javax.swing.JFrame {
             loadTasks(project.getId());
         }
     }
-    
+
     public void loadProjects() {
         List<Project> projects = projectDAO.getAll();
         projectModel.clear();
-        
+
         for (int i = 0; i < projects.size(); i++) {
-            
+
             Project project = projects.get(i);
             projectModel.addElement(project);
         }
         jListProjects.setModel(projectModel);
     }
-    
-    private void loadTasks(int idProject) {
+
+    private void loadTasks(int idProject){
         List<Task> tasks = taskDAO.getAll(idProject);
-        
+
         taskTableModel.setTasks(tasks);
         showJTableTasks(!tasks.isEmpty());
     }
-    
+
+    private void alterarTarefa(Task task) {
+
+        TaskDialogScreen taskDialogScreen = new TaskDialogScreen(this, rootPaneCheckingEnabled, true);
+
+        int projectIndex = jListProjects.getSelectedIndex();
+        Project project = (Project) projectModel.get(projectIndex);
+        taskDialogScreen.setProject(project);
+
+        taskDialogScreen.loadFields(task);
+        taskDialogScreen.setVisible(true);
+
+        taskDialogScreen.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                int projectIndex = jListProjects.getSelectedIndex();
+                Project project = (Project) projectModel.get(projectIndex);
+                
+                loadTasks(project.getId());
+            }
+        });
+
+    }
+
 }
