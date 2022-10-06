@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAO.TaskDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,8 +18,9 @@ import util.ConnectionFactory;
  *
  * @author WENDERSON
  */
-public class TaskDAO {
+public class TaskDAOImpl implements TaskDAO<Task> {
 
+    @Override
     public void save(Task task) {
 
         String sql = "INSERT INTO task(idProject, name, description, completed "
@@ -53,6 +55,7 @@ public class TaskDAO {
 
     }
 
+    @Override
     public void update(Task task) {
 
         String sql = "UPDATE task SET idProject = ?, name = ?, description = ?, "
@@ -84,6 +87,7 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public void removeById(int id) {
 
         String sql = "DELETE FROM task WHERE id = ?";
@@ -105,6 +109,7 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public List<Task> getAll(int idProject) {
         String sql = "SELECT * FROM task WHERE idProject = ?";
 
@@ -146,6 +151,7 @@ public class TaskDAO {
         return tasks;
     }
 
+    @Override
     public Task findOne(int idTask) {
 
         String sql = "SELECT * FROM task WHERE id = ?";

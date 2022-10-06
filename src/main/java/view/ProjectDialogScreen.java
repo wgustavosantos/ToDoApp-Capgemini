@@ -4,7 +4,8 @@
  */
 package view;
 
-import controller.ProjectDAO;
+import DAO.ProjectDAO;
+import controller.ProjectDAOImpl;
 import javax.swing.JOptionPane;
 import model.Project;
 
@@ -19,7 +20,7 @@ public class ProjectDialogScreen extends javax.swing.JDialog {
     public ProjectDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        projectDAO = new ProjectDAO();
+        projectDAO = new ProjectDAOImpl();
 
     }
 

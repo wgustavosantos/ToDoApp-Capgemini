@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAO.ProjectDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,8 +18,9 @@ import util.ConnectionFactory;
  *
  * @author WENDERSON
  */
-public class ProjectDAO {
+public class ProjectDAOImpl implements ProjectDAO<Project> {
 
+    @Override
     public void save(Project project) {
         String sql = "INSERT INTO project (name, description, createdAt, "
                 + "updatedAt) VALUES (?, ?, ?, ?)";
@@ -48,6 +50,7 @@ public class ProjectDAO {
 
     }
 
+    @Override
     public void update(Project project) {
 
         String sql = "UPDATE project SET name = ?, description = ?, createdAt = ?,"
@@ -77,6 +80,7 @@ public class ProjectDAO {
         }
     }
 
+    @Override
     public List<Project> getAll() {
         String sql = "SELECT * FROM project";
 
@@ -113,6 +117,7 @@ public class ProjectDAO {
         return projects;
     }
 
+    @Override
     public void removeById(int id) {
 
         String sql = "DELETE FROM project WHERE id = ?";

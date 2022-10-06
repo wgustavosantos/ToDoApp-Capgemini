@@ -4,8 +4,9 @@
  */
 package view;
 
-import controller.ProjectDAO;
-import controller.TaskDAO;
+import DAO.ProjectDAO;
+import controller.ProjectDAOImpl;
+import controller.TaskDAOImpl;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
@@ -25,7 +26,7 @@ import util.TaskTableModel;
 public class MainScreen extends javax.swing.JFrame {
 
     ProjectDAO projectDAO;
-    TaskDAO taskDAO;
+    TaskDAOImpl taskDAO;
 
     DefaultListModel projectModel;
 
@@ -490,8 +491,8 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     public void initDataController() {
-        projectDAO = new ProjectDAO();
-        taskDAO = new TaskDAO();
+        projectDAO = new ProjectDAOImpl();
+        taskDAO = new TaskDAOImpl();
     }
 
     public void initComponentesModel() {
