@@ -5,19 +5,20 @@
 package DAO;
 
 import java.util.List;
+import model.Project;
 
 /**
  *
  * @author WENDERSON
  */
-public interface ProjectDAO<T> {
+public interface ProjectDAO {
     
-    void save(T t);
+    void save(Project p);
 
-    void update(T t);
+    void update(Project t);
 
     void removeById(int id);
 
-    List<T> getAll();
+    List<Project> getAll();
 
 }

@@ -18,7 +18,12 @@ import util.ConnectionFactory;
  *
  * @author WENDERSON
  */
-public class TaskDAOImpl implements TaskDAO<Task> {
+public class TaskDAOImpl implements TaskDAO {
+    
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rset = null;
+    
 
     @Override
     public void save(Task task) {
@@ -26,9 +31,6 @@ public class TaskDAOImpl implements TaskDAO<Task> {
         String sql = "INSERT INTO task(idProject, name, description, completed "
                 + ", notes, deadline, createdAt, updatedAt) VALUES "
                 + "(?, ?, ?, ?, ?, ?, ?, ?)";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             //Cria uma conex�o com o banco
@@ -62,9 +64,6 @@ public class TaskDAOImpl implements TaskDAO<Task> {
                 + "completed = ?, notes = ?, deadline = ?,"
                 + " createdAt = ?, updatedAt = ? WHERE id = ?";
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
         try {
             //Cria uma conexao com o banco
             conn = ConnectionFactory.getConnection();
@@ -92,9 +91,6 @@ public class TaskDAOImpl implements TaskDAO<Task> {
 
         String sql = "DELETE FROM task WHERE id = ?";
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-
         try {
 
             conn = ConnectionFactory.getConnection();
@@ -112,10 +108,6 @@ public class TaskDAOImpl implements TaskDAO<Task> {
     @Override
     public List<Task> getAll(int idProject) {
         String sql = "SELECT * FROM task WHERE idProject = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rset = null; //Classe que vai recuperar os dados do banco de dados
 
         List<Task> tasks = new ArrayList<>();
 
@@ -156,10 +148,6 @@ public class TaskDAOImpl implements TaskDAO<Task> {
 
         String sql = "SELECT * FROM task WHERE id = ?";
         Task task = new Task();
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rset = null;
 
         try {
             conn = ConnectionFactory.getConnection();
