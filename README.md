@@ -36,7 +36,7 @@ Como desafio, foi sugerido a função de editar tarefas ao clicar no botão, que
 
 Clone o repositório na sua máquina
 
-Importe como um projeto mave existente a partir de sua IDE
+Importe como um projeto maven existente a partir de sua IDE
 
 Certifique-se que as depedências do pom.xml foram baixadas e adicionadas ao projeto
 
