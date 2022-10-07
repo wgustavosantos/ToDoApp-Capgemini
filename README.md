@@ -3,7 +3,7 @@
 
 ## Sobre o projeto
 
-O projeto foi construído durante a etapa de lógica de programação e algoritmos III, usando Java Swing para construção de telas e MySQL para persistência de dados.
+O projeto foi construído durante a etapa de lógica de programação e algoritmos III, usando Java Swing para construção de telas e JDBC para persistência de dados.
 
 Ferramenta/Tecnologia   | Versão
 --------- | ------
