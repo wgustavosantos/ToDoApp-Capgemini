@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAO.TaskDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,16 +18,19 @@ import util.ConnectionFactory;
  *
  * @author WENDERSON
  */
-public class TaskDAO {
+public class TaskDAOImpl implements TaskDAO {
+    
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rset = null;
+    
 
+    @Override
     public void save(Task task) {
 
         String sql = "INSERT INTO task(idProject, name, description, completed "
                 + ", notes, deadline, createdAt, updatedAt) VALUES "
                 + "(?, ?, ?, ?, ?, ?, ?, ?)";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             //Cria uma conex�o com o banco
@@ -53,14 +57,12 @@ public class TaskDAO {
 
     }
 
+    @Override
     public void update(Task task) {
 
         String sql = "UPDATE task SET idProject = ?, name = ?, description = ?, "
                 + "completed = ?, notes = ?, deadline = ?,"
                 + " createdAt = ?, updatedAt = ? WHERE id = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             //Cria uma conexao com o banco
@@ -84,12 +86,10 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public void removeById(int id) {
 
         String sql = "DELETE FROM task WHERE id = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
 
@@ -105,12 +105,9 @@ public class TaskDAO {
         }
     }
 
+    @Override
     public List<Task> getAll(int idProject) {
         String sql = "SELECT * FROM task WHERE idProject = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rset = null; //Classe que vai recuperar os dados do banco de dados
 
         List<Task> tasks = new ArrayList<>();
 
@@ -146,14 +143,11 @@ public class TaskDAO {
         return tasks;
     }
 
+    @Override
     public Task findOne(int idTask) {
 
         String sql = "SELECT * FROM task WHERE id = ?";
         Task task = new Task();
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rset = null;
 
         try {
             conn = ConnectionFactory.getConnection();

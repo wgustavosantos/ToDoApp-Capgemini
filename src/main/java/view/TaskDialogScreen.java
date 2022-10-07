@@ -4,10 +4,8 @@
  */
 package view;
 
-import controller.ProjectDAO;
-import controller.TaskDAO;
+import controller.TaskDAOImpl;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Project;
 import model.Task;
@@ -18,7 +16,7 @@ import model.Task;
  */
 public class TaskDialogScreen extends javax.swing.JDialog {
 
-    TaskDAO taskDAO;
+    TaskDAOImpl taskDAO;
     Project project;
     boolean taskUpdate = false;
     int idTaskUpdate = 0;
@@ -27,7 +25,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         hideErrorFields();
-        taskDAO = new TaskDAO();
+        taskDAO = new TaskDAOImpl();
         taskUpdate = false; // Garantir que a variavel sentinela para atualizar
         //tarefas seja sempre falsa ao ser instanciada com o construtor padrao
     }
@@ -36,7 +34,7 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         hideErrorFields();
-        taskDAO = new TaskDAO();
+        taskDAO = new TaskDAOImpl();
         this.taskUpdate = taskUpdate;// Tal construtor é chamado quando clicamos
         //no botao de editar no MainScreen
     }

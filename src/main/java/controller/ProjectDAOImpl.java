@@ -4,6 +4,7 @@
  */
 package controller;
 
+import DAO.ProjectDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -17,14 +18,16 @@ import util.ConnectionFactory;
  *
  * @author WENDERSON
  */
-public class ProjectDAO {
+public class ProjectDAOImpl implements ProjectDAO {
 
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rset = null;
+
+    @Override
     public void save(Project project) {
         String sql = "INSERT INTO project (name, description, createdAt, "
                 + "updatedAt) VALUES (?, ?, ?, ?)";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             //Cria uma conexao com o banco
@@ -48,13 +51,11 @@ public class ProjectDAO {
 
     }
 
+    @Override
     public void update(Project project) {
 
         String sql = "UPDATE project SET name = ?, description = ?, createdAt = ?,"
                 + " updatedAt = ? WHERE id = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             //Cria uma conexao com o banco
@@ -77,14 +78,11 @@ public class ProjectDAO {
         }
     }
 
+    @Override
     public List<Project> getAll() {
         String sql = "SELECT * FROM project";
 
         List<Project> projects = new ArrayList<>();
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rset = null;
 
         try {
             conn = ConnectionFactory.getConnection();
@@ -113,12 +111,10 @@ public class ProjectDAO {
         return projects;
     }
 
+    @Override
     public void removeById(int id) {
 
         String sql = "DELETE FROM project WHERE id = ?";
-
-        Connection conn = null;
-        PreparedStatement stmt = null;
 
         try {
             conn = ConnectionFactory.getConnection();

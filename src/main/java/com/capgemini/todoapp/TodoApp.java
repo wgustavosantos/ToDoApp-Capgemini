@@ -4,10 +4,11 @@
  */
 package com.capgemini.todoapp;
 
-import controller.ProjectDAO;
-import controller.TaskDAO;
+import DAO.ProjectDAO;
+import DAO.TaskDAO;
+import controller.ProjectDAOImpl;
+import controller.TaskDAOImpl;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import model.Project;
 import model.Task;
@@ -20,8 +21,8 @@ public class TodoApp {
 
     public static void main(String[] args) {
 
-        ProjectDAO projectDAO = new ProjectDAO();
-        TaskDAO taskDAO = new TaskDAO();
+        ProjectDAO projectDAO = new ProjectDAOImpl();
+        TaskDAO taskDAO = new TaskDAOImpl();
         Project project = new Project();
         Task task = new Task();
         
