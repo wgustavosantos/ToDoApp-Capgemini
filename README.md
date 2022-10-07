@@ -28,6 +28,10 @@ A aplicação consiste em um gerenciador de tarefas básicos a fim de utilizar t
 
 https://user-images.githubusercontent.com/77124683/194456844-73980591-945f-4ccf-84bf-8b0ffea471d3.mp4
 
+#### Extras
+
+Como desafio, foi sugerido a função de editar tarefas ao clicar no botão, que foi implementado e mostrado no vídeo
+
 ### Como iniciar na máquina local
 
 Clone o repositório na sua máquina
